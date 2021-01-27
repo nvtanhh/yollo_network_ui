@@ -4,6 +4,7 @@ import 'package:yollo_behance/ui/discovery_screens.dart';
 import 'package:yollo_behance/ui/profile_screen.dart';
 import 'package:yollo_behance/ui/timeline_screen.dart';
 import 'package:yollo_behance/ui/wallet_screen.dart';
+import 'ui/tab.dart';
 
 class MyNavigator extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _MyNavigatorState extends State<MyNavigator>
   final bodies = <Widget>[
     TimeLineScreen(),
     DiscoveryScreen(),
-    ChatScreen(),
+    ContentCard(),
     WalletScreen(),
     ProfileScreen(),
   ];
