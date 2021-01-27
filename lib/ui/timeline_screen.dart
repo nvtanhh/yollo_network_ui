@@ -19,17 +19,12 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => StoryScreen()),
-          );
-        },
-      ),
+      backgroundColor: Colors.white,
+      appBar: _buildAppBar(),
+      extendBodyBehindAppBar: true,
       body: Column(
         children: [
-          _buildAppBar(),
+          // _buildAppBar(),
           Expanded(
             child: RefreshIndicator(
               onRefresh: _refesh,
@@ -56,36 +51,35 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
   }
 
   _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16, left: 16, top: 20, bottom: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(
-            Icons.search,
+    return AppBar(
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.white.withOpacity(0.85),
+      leading: Icon(
+        Icons.search,
+        color: Colors.black87,
+      ),
+      title: Text(
+        'Explore',
+        style: Theme.of(context)
+            .textTheme
+            .headline5
+            .copyWith(fontWeight: FontWeight.bold),
+      ),
+      actions: [
+        IconButton(
+          icon: Icon(
+            Icons.add,
             color: Colors.black87,
           ),
-          Text(
-            'Explore',
-            style: Theme.of(context)
-                .textTheme
-                .headline5
-                .copyWith(fontWeight: FontWeight.bold),
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.add,
-              color: Colors.black87,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CreatePostScreen()),
-              );
-            },
-          )
-        ],
-      ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CreatePostScreen()),
+            );
+          },
+        )
+      ],
     );
   }
 

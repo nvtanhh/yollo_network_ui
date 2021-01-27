@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:yollo_behance/ui/story_screen.dart';
 
 class DiscoveryScreen extends StatefulWidget {
   DiscoveryScreen({Key key}) : super(key: key);
@@ -15,16 +16,15 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     textTheme = Theme.of(context).textTheme;
     return SafeArea(
         child: Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.white,
+      appBar: _buildAppBar(),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // _buildAppBar(),
-          SizedBox(
-            height: 20,
-          ),
           Expanded(
             child: ListView(
-              physics: NeverScrollableScrollPhysics(),
+              physics: BouncingScrollPhysics(),
               shrinkWrap: true,
               children: [
                 _buildStories(),
@@ -53,28 +53,42 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
   }
 
   _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16, left: 16, top: 20, bottom: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Icon(
-          //   Icons.search,
-          //   color: Colors.black87,
-          // ),
-          Text(
-            'Discovery',
-            style: Theme.of(context)
-                .textTheme
-                .headline5
-                .copyWith(fontWeight: FontWeight.bold),
-          ),
-          // Icon(
-          //   Icons.add,
-          //   color: Colors.black87,
-          // )
-        ],
+    return AppBar(
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.white.withOpacity(0.85),
+      leading: Container(
+          alignment: Alignment.center,
+          child: CircleAvatar(
+            radius: 16,
+            backgroundColor: Colors.grey[200],
+            child: Icon(
+              Icons.circle,
+              color: Colors.grey[600],
+              size: 18,
+            ),
+          )),
+      title: Text(
+        'Discovery',
+        style: Theme.of(context)
+            .textTheme
+            .headline5
+            .copyWith(fontWeight: FontWeight.bold),
       ),
+      actions: [
+        IconButton(
+          icon: CircleAvatar(
+            radius: 20,
+            backgroundColor: Colors.grey[200],
+            child: Icon(
+              Icons.favorite,
+              color: Colors.grey[600],
+              size: 18,
+            ),
+          ),
+          onPressed: () {},
+        )
+      ],
     );
   }
 
@@ -97,7 +111,8 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
         Padding(
           padding: EdgeInsets.only(top: 10, left: 16, bottom: 12),
           child: Text('INSPIRING STORIES',
-              style: textTheme.subtitle1.copyWith(color: Colors.grey[600])),
+              style: textTheme.subtitle2
+                  .copyWith(color: Colors.grey, fontWeight: FontWeight.bold)),
         ),
         Container(
           height: 90,
@@ -150,10 +165,11 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
           Padding(
             padding: EdgeInsets.only(top: 10, left: 16, bottom: 10),
             child: Text('VIDEOS',
-                style: textTheme.subtitle1.copyWith(color: Colors.grey[600])),
+                style: textTheme.subtitle2
+                    .copyWith(color: Colors.grey, fontWeight: FontWeight.bold)),
           ),
           Container(
-            height: 300,
+            height: 320,
             child: ListView.builder(
               physics: BouncingScrollPhysics(),
               shrinkWrap: true,
@@ -177,12 +193,12 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
       ],
       [
         'https://onextrapixel.com/wp-content/uploads/2012/03/instagram-cover.jpg',
-        'The sounld of your heart',
+        'The sound of your heart',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacinia interdum lorem. Aenean et mattis quam. Phasellus quis blandit elit, quis tempus purus.'
       ],
       [
         'https://spic.one/wp-content/uploads/2018/08/034740ba07a441f4e6c5.jpg',
-        'How to have your life become happier',
+        'How to make your life become happier',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacinia interdum lorem. Aenean et mattis quam. Phasellus quis blandit elit, quis tempus purus.'
       ],
     ];
@@ -195,7 +211,8 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
             padding: EdgeInsets.only(top: 10, left: 16, bottom: 10),
             child: Text(
               'NEWS',
-              style: textTheme.subtitle1.copyWith(color: Colors.grey[600]),
+              style: textTheme.subtitle2
+                  .copyWith(color: Colors.grey, fontWeight: FontWeight.bold),
             ),
           ),
           Container(
@@ -215,25 +232,33 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
   }
 
   _storyItem({String avatar, String name}) {
-    return Container(
-      alignment: Alignment.topCenter,
-      margin: EdgeInsets.only(left: 16),
-      child: avatar != null
-          ? Column(
-              children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage(avatar),
-                ),
-                SizedBox(height: 8),
-                Text(name)
-              ],
-            )
-          : CircleAvatar(
-              radius: 30,
-              backgroundColor: Colors.grey[200],
-              child: Icon(Icons.add, color: Colors.grey),
-            ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => StoryScreen()),
+        );
+      },
+      child: Container(
+        alignment: Alignment.topCenter,
+        margin: EdgeInsets.only(left: 16),
+        child: avatar != null
+            ? Column(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage(avatar),
+                  ),
+                  SizedBox(height: 8),
+                  Text(name)
+                ],
+              )
+            : CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.grey[200],
+                child: Icon(Icons.add, color: Colors.grey),
+              ),
+      ),
     );
   }
 
@@ -279,7 +304,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                            color: Colors.black87.withOpacity(.5),
+                            color: Colors.white70.withOpacity(.3),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),
                         child: Text(
@@ -308,6 +333,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                   margin: EdgeInsets.only(top: 10),
                   height: 2,
                   child: LinearProgressIndicator(
+                    backgroundColor: Colors.white70.withOpacity(.3),
                     value: .6,
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                   ),

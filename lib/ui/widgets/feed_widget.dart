@@ -36,7 +36,7 @@ class _FeedWidgetState extends State<FeedWidget> {
         Container(
           margin: EdgeInsets.only(right: 15),
           child: CircleAvatar(
-            radius: 25,
+            radius: 22,
             backgroundImage: AssetImage(widget.feed.avatar),
           ),
         ),
@@ -47,7 +47,7 @@ class _FeedWidgetState extends State<FeedWidget> {
               Text(widget.feed.userName,
                   style: Theme.of(context)
                       .textTheme
-                      .subtitle1
+                      .subtitle2
                       .copyWith(fontWeight: FontWeight.bold)),
               Text(timeago.format(widget.feed.createdAt),
                   style: Theme.of(context).textTheme.caption),
