@@ -241,6 +241,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     return Stack(
       children: [
         Container(
+          height: 300,
           width: MediaQuery.of(context).size.width * 0.7,
           alignment: Alignment.topCenter,
           margin: EdgeInsets.only(left: 16),
