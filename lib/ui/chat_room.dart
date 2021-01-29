@@ -1,7 +1,7 @@
 import 'another.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'chatterScreen.dart';
+import 'chatter_screen.dart';
 
 class ChatPage extends StatefulWidget {
   @override

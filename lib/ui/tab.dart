@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "chatRoom.dart";
+import 'chat_room.dart';
 import "notification.dart";
 
 class ContentCard extends StatefulWidget {

@@ -14,7 +14,7 @@ class MyNavigator extends StatefulWidget {
 class _MyNavigatorState extends State<MyNavigator>
     with SingleTickerProviderStateMixin {
   // final autoSizeGroup = AutoSizeGroup();
-  var _bottomNavIndex = 0; //default index of first screen
+  var _bottomNavIndex = 3; //default index of first screen
 
   final icons = <IconData>[
     Icons.home,

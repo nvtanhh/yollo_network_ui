@@ -266,7 +266,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     return Stack(
       children: [
         Container(
-          height: 300,
+          height: 320,
           width: MediaQuery.of(context).size.width * 0.7,
           alignment: Alignment.topCenter,
           margin: EdgeInsets.only(left: 16),
@@ -336,7 +336,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                   child: LinearProgressIndicator(
                     backgroundColor: Colors.white70.withOpacity(.3),
                     value: .6,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                   ),
                 )
               ],

@@ -5,7 +5,6 @@ import 'package:timeago/timeago.dart' as timeago;
 class FeedWidget extends StatefulWidget {
   final Feed feed;
   const FeedWidget(this.feed, {Key key}) : super(key: key);
-
   @override
   _FeedWidgetState createState() => _FeedWidgetState();
 }

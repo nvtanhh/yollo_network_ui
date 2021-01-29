@@ -10,7 +10,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'show_pick_time.dart';
 import 'another.dart';
-import 'chatAppBar.dart';
+import 'chat_app_bar.dart';
 
 //final _firestore = Firestore.instance;
 String username = 'User';
