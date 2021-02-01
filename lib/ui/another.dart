@@ -6,11 +6,13 @@ class ChatUsers {
   String secondaryText;
   String image;
   String time;
+  int countUnread;
   ChatUsers(
       {@required this.text,
       @required this.secondaryText,
       @required this.image,
-      @required this.time});
+      @required this.time,
+      this.countUnread});
 }
 
 enum STATE { NONE, ICONMENU, LOADIMAGE, LOADFILE, SHOWREACT }

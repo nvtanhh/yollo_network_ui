@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yollo_behance/core/models/payment_history.dart';
 import 'package:yollo_behance/ui/widgets/card_widget.dart';
+import 'package:yollo_behance/ui/account_manage.dart';
 
 class WalletScreen extends StatefulWidget {
   WalletScreen({Key key}) : super(key: key);
@@ -15,6 +16,14 @@ class _WalletScreenState extends State<WalletScreen> {
   Widget build(BuildContext context) {
     textTheme = Theme.of(context).textTheme;
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return AccountManagerScreen();
+            }));
+          },
+        ),
         backgroundColor: Colors.white,
         appBar: _buildAppBar(),
         body: Stack(

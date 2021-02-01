@@ -13,45 +13,55 @@ class _ChatPageState extends State<ChatPage>
   List<ChatUsers> chatUsers = [
     ChatUsers(
         text: "Jane Russel",
-        secondaryText: "Awesome Setup",
-        image: "assets/image/lll.jpg",
-        time: "Now"),
+        secondaryText:
+            "Awesome Setup hi my name is Lam Phan Dam Tung Heloo helloooooo",
+        image: "assets/images/avt4.jpeg",
+        time: "Now",
+        countUnread: 1),
     ChatUsers(
         text: "Glady's Murphy",
         secondaryText: "That's Great",
-        image: "assets/image/lll.jpg",
-        time: "Yesterday"),
+        image: "assets/images/avt5.jpeg",
+        time: "Yesterday",
+        countUnread: 23),
     ChatUsers(
         text: "Jorge Henry",
         secondaryText: "Hey where are you?",
-        image: "assets/image/lll.jpg",
-        time: "31 Mar"),
+        image: "assets/images/avt6.jpeg",
+        time: "31 Mar",
+        countUnread: 12),
     ChatUsers(
         text: "Philip Fox",
         secondaryText: "Busy! Call me in 20 mins",
-        image: "assets/image/lll.jpg",
-        time: "28 Mar"),
+        image: "assets/images/pic5.jpeg",
+        time: "28 Mar",
+        countUnread: 0),
     ChatUsers(
         text: "Debra Hawkins",
         secondaryText: "Thankyou, It's awesome",
-        image: "assets/image/lll.jpg",
-        time: "23 Mar"),
+        image: "assets/images/avt7.jpeg",
+        time: "23 Mar",
+        countUnread: 3),
     ChatUsers(
         text: "Jacob Pena",
         secondaryText: "will update you in evening",
-        image: "assets/image/lll.jpg",
-        time: "17 Mar"),
+        image: "assets/images/avt8.jpg",
+        time: "17 Mar",
+        countUnread: 11),
     ChatUsers(
         text: "Andrey Jones",
         secondaryText: "Can you please share the file?",
-        image: "assets/image/lll.jpg",
-        time: "24 Feb"),
+        image: "assets/images/avt9.jpeg",
+        time: "24 Feb",
+        countUnread: 0),
     ChatUsers(
         text: "John Wick",
         secondaryText: "How are you?",
-        image: "assets/image/lll.jpg",
-        time: "18 Feb"),
+        image: "assets/images/avt10.jpg",
+        time: "18 Feb",
+        countUnread: 0),
   ];
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -97,6 +107,7 @@ class _ChatPageState extends State<ChatPage>
                   image: chatUsers[index].image,
                   time: chatUsers[index].time,
                   isMessageRead: (index == 0 || index == 3) ? true : false,
+                  countUnread: chatUsers[index].countUnread,
                 );
               },
             ),
@@ -116,12 +127,14 @@ class ChatUsersList extends StatefulWidget {
   String image;
   String time;
   bool isMessageRead;
+  int countUnread;
   ChatUsersList(
       {@required this.text,
       @required this.secondaryText,
       @required this.image,
       @required this.time,
-      @required this.isMessageRead});
+      @required this.isMessageRead,
+      this.countUnread});
   @override
   _ChatUsersListState createState() => _ChatUsersListState();
 }
@@ -136,18 +149,30 @@ class _ChatUsersListState extends State<ChatUsersList> {
         }));
       },
       child: Container(
-        padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
+        padding: EdgeInsets.only(left: 20, right: 16, top: 13, bottom: 13),
         child: Row(
           children: <Widget>[
             Expanded(
               child: Row(
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: AssetImage(widget.image),
-                    maxRadius: 30,
+                  Stack(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: AssetImage(widget.image),
+                        maxRadius: 30,
+                      ),
+                      (widget.countUnread > 0)
+                          ? CircleAvatar(
+                              radius: 10,
+                              backgroundColor: Colors.red,
+                              child: Text("${widget.countUnread}",
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.white)))
+                          : Container()
+                    ],
                   ),
                   SizedBox(
-                    width: 16,
+                    width: 20,
                   ),
                   Expanded(
                     child: Container(
@@ -155,14 +180,23 @@ class _ChatUsersListState extends State<ChatUsersList> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(widget.text),
+                          Text(widget.text,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      (widget.countUnread > 0) ? 17 : 15)),
                           SizedBox(
                             height: 6,
                           ),
                           Text(
-                            widget.secondaryText,
+                            (widget.secondaryText.length < 25)
+                                ? widget.secondaryText
+                                : widget.secondaryText.substring(0, 25),
                             style: TextStyle(
-                                fontSize: 14, color: Colors.grey.shade500),
+                                fontSize: (widget.countUnread > 0) ? 15 : 13,
+                                color: widget.countUnread == 0
+                                    ? Colors.grey.shade500
+                                    : Colors.black),
                           ),
                         ],
                       ),
@@ -171,14 +205,25 @@ class _ChatUsersListState extends State<ChatUsersList> {
                 ],
               ),
             ),
-            Text(
-              widget.time,
-              style: TextStyle(
-                  fontSize: 12,
-                  color: widget.isMessageRead
-                      ? Colors.deepPurple
-                      : Colors.grey.shade500),
-            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  widget.time,
+                  style: TextStyle(
+                      fontSize: 12,
+                      color: widget.isMessageRead
+                          ? Colors.deepPurple
+                          : Colors.grey.shade500),
+                ),
+                (widget.countUnread == 0)
+                    ? CircleAvatar(
+                        radius: 8,
+                        backgroundImage: AssetImage(widget.image),
+                      )
+                    : Container()
+              ],
+            )
           ],
         ),
       ),

@@ -5,6 +5,7 @@ import 'package:yollo_behance/ui/profile_screen.dart';
 import 'package:yollo_behance/ui/timeline_screen.dart';
 import 'package:yollo_behance/ui/wallet_screen.dart';
 import 'ui/tab.dart';
+import 'package:yollo_behance/ui/main_profile.dart';
 
 class MyNavigator extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _MyNavigatorState extends State<MyNavigator>
     DiscoveryScreen(),
     ContentCard(),
     WalletScreen(),
-    ProfileScreen(),
+    MainProfileScreen(),
   ];
 
   List<BottomNavigationBarItem> navItems;

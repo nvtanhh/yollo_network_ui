@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({Key key}) : super(key: key);
-
+  ProfileScreen({Key key, this.scrollController}) : super(key: key);
+  ScrollController scrollController;
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }

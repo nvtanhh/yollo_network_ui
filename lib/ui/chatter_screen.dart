@@ -129,7 +129,7 @@ class _ChatterScreenState extends State<ChatterScreen> {
       setState(() {
         files = result.paths.map((path) => File(path)).toList();
         state = STATE.LOADFILE;
-        print(files);
+        // print(files);
       });
     } else {
       _error = error;
@@ -587,7 +587,7 @@ class _ChatterScreenState extends State<ChatterScreen> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               itemCount: messages.length,
               itemBuilder: (context, index) {
-                print("${messages[index].replyIndex}");
+                // print("${messages[index].replyIndex}");
                 var temp = Column(
                     crossAxisAlignment: messages[index].user
                         ? CrossAxisAlignment.end
@@ -646,8 +646,8 @@ class _ChatterScreenState extends State<ChatterScreen> {
                         ),
                         onPressed: () {
                           setState(() {
-                            print(state);
-                            print(_image == null);
+                            // print(state);
+                            // print(_image == null);
                             messages.insert(
                                 0,
                                 MessageBubble(
@@ -703,11 +703,12 @@ class _ChatterScreenState extends State<ChatterScreen> {
             ? MainAxisAlignment.end
             : MainAxisAlignment.start,
         children: [
-          if (!messages[index].user)
-            CircleAvatar(
-              radius: 15,
-              backgroundImage: AssetImage("assets/image/lll.jpg"),
-            ),
+          (!messages[index].user)
+              ? CircleAvatar(
+                  radius: 15,
+                  backgroundImage: AssetImage("assets/image/lll.jpg"),
+                )
+              : Container(),
           Expanded(
             child: Column(
                 crossAxisAlignment: messages[index].user
