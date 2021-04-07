@@ -1,17 +1,7 @@
 # yollo_behance
 
-A new Flutter project.
+A new Flutter social application UI Kit.
 
-## Getting Started
+design: https://www.behance.net/gallery/95350545/Yollo-Digital-Network?tracking_source=search_projects_recommended%7Csocial%20app%20ios
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# yollo_network_ui
+# Screenshot
